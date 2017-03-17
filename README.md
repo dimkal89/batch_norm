@@ -8,7 +8,7 @@ by Sergey Ioffe and Christian Szegedy
 
 Paper url: https://arxiv.org/pdf/1502.03167.pdf
 
-Thanks to R2RT for his implementation in <br/>
+Thanks to R2RT for their implementation in <br/>
 http://r2rt.com/implementing-batch-normalization-in-tensorflow.html <br/>
 If it wasn't for that I would probably still be struggling with tensorflow dependencies... <br/>
 
