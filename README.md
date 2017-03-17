@@ -1,6 +1,6 @@
 # batch_norm
 
-An implementation of batch normalization with early stopping 
+An implementation of batch normalization with early stopping <br/>
 for a simple feedforward neural net with 2 hidden layers on the MNIST dataset.
 
 Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <br/>
