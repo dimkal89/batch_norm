@@ -1,7 +1,7 @@
 # batch_norm
 
-An implementation of batch normalization for a simple feedforward
-neural net with 2 hidden layers on the MNIST dataset.
+An implementation of batch normalization with early stopping 
+for a simple feedforward neural net with 2 hidden layers on the MNIST dataset.
 
 Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <br/>
 by Sergey Ioffe and Christian Szegedy
