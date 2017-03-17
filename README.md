@@ -15,6 +15,7 @@ If it wasn't for that I would probably still be struggling with tensorflow depen
 Use and abuse to your heart's content, just give credit ;) <br/>
 Do let me know if you notice something wrong with the code.
 
-Dimitris
-
 TensorFlow version: 1.0.1
+Python version 3.x
+
+Dimitris
