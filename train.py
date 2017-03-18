@@ -65,7 +65,7 @@ def batch_norm_transform(inputs, epsilon, training, ema_decay):
     # scale and shift the normalized value
     batch_norm = tf.add(tf.multiply(gamma, in_norm), beta)
 
-    return gamma, beta, batch_norm
+    return batch_norm
 
 
 def feedforward_BN(inputs, n_in, n_classes, hidden, epsilon, ema_decay, training=True):
@@ -82,12 +82,12 @@ def feedforward_BN(inputs, n_in, n_classes, hidden, epsilon, ema_decay, training
     """
     with tf.variable_scope("layer1"):
         W1 = tf.get_variable("weights", initializer=tf.random_normal([n_in, hidden]))
-        gamma1, beta1, y1_BN = batch_norm_transform(inputs, epsilon, training, ema_decay)
+        y1_BN = batch_norm_transform(inputs, epsilon, training, ema_decay)
         layer1_BN = tf.matmul(y1_BN, W1)
 
     with tf.variable_scope("layer2"):
         W2 = tf.get_variable("weights", initializer=tf.random_normal([hidden, hidden]))
-        gamma2, beta2, y2_BN = batch_norm_transform(layer1_BN, epsilon, training, ema_decay)
+        y2_BN = batch_norm_transform(layer1_BN, epsilon, training, ema_decay)
         layer2_BN = tf.nn.relu(tf.matmul(y2_BN, W2))
 
     with tf.variable_scope("out_layer"):
