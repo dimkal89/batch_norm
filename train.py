@@ -166,7 +166,7 @@ def train(dataset, batch_size, l_rate, epochs, validation_freq, patience):
                 else:
                     patience_timer += 1
                     print("Patience timer:", patience_timer)
-                    print("Current best validation accuracy:", best_valid_acc)
+                    print("Current best validation accuracy:", valid_acc)
                     print("----------------")
 
                 if patience_timer == patience:
