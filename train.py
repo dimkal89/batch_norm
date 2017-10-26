@@ -98,7 +98,7 @@ def feedforward_BN(inputs, n_in, n_classes, hidden, epsilon, ema_decay, training
     return layer_out
 
 
-def train(dataset, batch_size, l_rate, epochs, validation_freq, patience):
+def train(dataset, batch_size, l_rate, iterations, validation_freq, patience):
     """
     Main training function. Modified implementation of early stopping.
     Final model is saved.
@@ -106,10 +106,10 @@ def train(dataset, batch_size, l_rate, epochs, validation_freq, patience):
     :param dataset: NumPy array
     :param batch_size: int - size of mini-batches
     :param l_rate: float - learning rate of SGD optimization
-    :param epochs: int - training epochs
+    :param iterations: int - training iterations
     :param validation_freq: int - the frequency of checking
     model performance on validation set
-    :param patience: int - wait for this many epochs for
+    :param patience: int - wait for this many iterations for
     model performance to improve before stopping training
     :return: None
     """
@@ -135,8 +135,7 @@ def train(dataset, batch_size, l_rate, epochs, validation_freq, patience):
         patience_timer = 0
         best_valid_acc = -np.inf
 
-        for epoch in range(epochs):
-            avg_loss = 0.
+        for iter in range(iterations):
 
             train_batch = dataset.train.next_batch(batch_size)
             train_x = train_batch[0]
@@ -146,11 +145,9 @@ def train(dataset, batch_size, l_rate, epochs, validation_freq, patience):
                             feed_dict={x: train_x,
                                        y: train_y})
 
-            avg_loss += c / batch_size
+            print("Iteration:", iter, "Loss:", c)
 
-            print("Epoch:", epoch, "Loss:", avg_loss)
-
-            if epoch % validation_freq == 0:
+            if iter % validation_freq == 0:
                 valid_batch = dataset.validation.next_batch(batch_size)
                 valid_x = valid_batch[0]
                 valid_y = valid_batch[1]
@@ -217,10 +214,10 @@ if __name__ == '__main__':
     TRAIN_BATCH_SIZE = 100
     TEST_BATCH_SIZE = 50
     LEARNING_RATE = 0.001
-    EPOCHS = 4000
+    ITERS = 4000
     VALID_FREQ = 5
     PATIENCE = 15
     DATASET = input_data.read_data_sets('MNIST_data')
 
-    train(DATASET, TRAIN_BATCH_SIZE, LEARNING_RATE, EPOCHS, VALID_FREQ, PATIENCE)
+    train(DATASET, TRAIN_BATCH_SIZE, LEARNING_RATE, ITERS, VALID_FREQ, PATIENCE)
     test(DATASET)
